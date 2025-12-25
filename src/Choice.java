@@ -8,6 +8,7 @@ class Choice {
         System.out.println("2. DELETE");
         System.out.println("3. UPDATE");
     }
+
     String getChoice() {
         return scanner.nextLine();
     }

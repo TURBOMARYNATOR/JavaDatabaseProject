@@ -56,8 +56,10 @@ public class MyJDBC {
             }
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("----------------------------------------------");
+            System.out.println("The Database is currently OFFLINE.");
+            System.out.println("Please check if MySQL Server is running.");
+            System.out.println("----------------------------------------------");
         }
     }
-
 }
