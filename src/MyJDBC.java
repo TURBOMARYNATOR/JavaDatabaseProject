@@ -28,19 +28,23 @@ public class MyJDBC {
             choice.ChoiceMenu();
             String getChoice = choice.getChoice();
 
-            if (getChoice.equals("1")) {
-                INSERT insert = new INSERT();
-                String sql = insert.QUERY();
-                statement.executeUpdate(sql);
-            }
-            else if (getChoice.equals("2")) {
-                DELETE delete = new DELETE();
-                String sql = delete.QUERY();
-                statement.executeUpdate(sql);
-            } else if (getChoice.equals("3")) {
-                UPDATE update = new UPDATE();
-                String sql = update.QUERY();
-                statement.executeUpdate(sql);
+            switch (getChoice) {
+                case "1" -> {
+                    INSERT insert = new INSERT();
+                    String sql = insert.QUERY();
+                    statement.executeUpdate(sql);
+                }
+                case "2" -> {
+                    DELETE delete = new DELETE();
+                    String sql = delete.QUERY();
+                    statement.executeUpdate(sql);
+
+                }
+                case "3" -> {
+                    UPDATE update = new UPDATE();
+                    String sql = update.QUERY();
+                    statement.executeUpdate(sql);
+                }
             }
 
             resultSet = statement.executeQuery(QUERY);
