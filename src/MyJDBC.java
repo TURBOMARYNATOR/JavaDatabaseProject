@@ -37,6 +37,10 @@ public class MyJDBC {
                 DELETE delete = new DELETE();
                 String sql = delete.QUERY();
                 statement.executeUpdate(sql);
+            } else if (getChoice.equals("3")) {
+                UPDATE update = new UPDATE();
+                String sql = update.QUERY();
+                statement.executeUpdate(sql);
             }
 
             resultSet = statement.executeQuery(QUERY);
