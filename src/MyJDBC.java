@@ -1,5 +1,4 @@
 import java.sql.*;
-import java.util.Objects;
 
 public class MyJDBC {
     static final String QUERY = "SELECT idusers, username, password FROM USERS";
@@ -16,6 +15,14 @@ public class MyJDBC {
             }
 
             Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(QUERY);
+
+            while (resultSet.next()) {
+                System.out.print("ID: " + resultSet.getInt("idusers"));
+                System.out.print(", Username: " + resultSet.getString("username"));
+                System.out.print(", Password: " + resultSet.getString("password"));
+                System.out.println();
+            }
 
             Choice choice = new Choice();
             choice.ChoiceMenu();
@@ -32,7 +39,7 @@ public class MyJDBC {
                 statement.executeUpdate(sql);
             }
 
-            ResultSet resultSet = statement.executeQuery(QUERY);
+            resultSet = statement.executeQuery(QUERY);
             while (resultSet.next()) {
                 System.out.print("ID: " + resultSet.getInt("idusers"));
                 System.out.print(", Username: " + resultSet.getString("username"));
