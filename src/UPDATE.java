@@ -16,6 +16,7 @@ public class UPDATE {
             return String.format("UPDATE USERS SET password = '%s' " +
                                  "WHERE username = '%s'",
                                  password, username);
+
         } else if (choice.equals("2")) {
             System.out.println("Enter username to change");
             String username = scanner.nextLine();

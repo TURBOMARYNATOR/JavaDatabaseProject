@@ -25,7 +25,7 @@ public class MyJDBC {
             }
 
             Choice choice = new Choice();
-            choice.ChoiceMenu();
+            choice.choiceMenu();
             String getChoice = choice.getChoice();
 
             switch (getChoice) {
