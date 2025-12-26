@@ -32,25 +32,6 @@ public class MyJDBC {
             Statement statement = connection.createStatement();
             ResultSet resultSet;
 
-            resultSet = statement.executeQuery(QUERY);
-            if (table.equals("users")) {
-                while (resultSet.next()) {
-                    System.out.print("ID: " + resultSet.getInt("user_id"));
-                    System.out.print(", Username: " + resultSet.getString("username"));
-                    System.out.print(", Password: " + resultSet.getString("password"));
-                    System.out.println();
-                }
-            } else if (table.equals("customers")) {
-                while (resultSet.next()) {
-                    System.out.print("ID: " + resultSet.getInt("customer_id"));
-                    System.out.print(", Name: " + resultSet.getString("name"));
-                    System.out.print(", Surname: " + resultSet.getString("surname"));
-                    System.out.print(", Age: " + resultSet.getInt("age"));
-                    System.out.print(", Height: " + resultSet.getInt("height"));
-                    System.out.println();
-                }
-            }
-
             Choice choice =  new Choice();
             choice.choiceMenu();
             String getChoice = choice.getChoice();
@@ -71,6 +52,25 @@ public class MyJDBC {
                     UPDATE update = new UPDATE();
                     String sql = update.QUERY();
                     statement.executeUpdate(sql);
+                }
+            }
+
+            resultSet = statement.executeQuery(QUERY);
+            if (table.equals("users")) {
+                while (resultSet.next()) {
+                    System.out.print("ID: " + resultSet.getInt("user_id"));
+                    System.out.print(", Username: " + resultSet.getString("username"));
+                    System.out.print(", Password: " + resultSet.getString("password"));
+                    System.out.println();
+                }
+            } else if (table.equals("customers")) {
+                while (resultSet.next()) {
+                    System.out.print("ID: " + resultSet.getInt("customer_id"));
+                    System.out.print(", Name: " + resultSet.getString("name"));
+                    System.out.print(", Surname: " + resultSet.getString("surname"));
+                    System.out.print(", Age: " + resultSet.getInt("age"));
+                    System.out.print(", Height: " + resultSet.getInt("height"));
+                    System.out.println();
                 }
             }
         }
