@@ -30,7 +30,7 @@ public class MyJDBC {
 
             String QUERY = String.format("SELECT * FROM %s", table);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(QUERY);
+            ResultSet resultSet;
 
             resultSet = statement.executeQuery(QUERY);
             if (table.equals("users")) {
@@ -51,7 +51,7 @@ public class MyJDBC {
                 }
             }
 
-            Choice choice = new Choice();
+            Choice choice =  new Choice();
             choice.choiceMenu();
             String getChoice = choice.getChoice();
 
