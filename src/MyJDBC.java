@@ -46,7 +46,6 @@ public class MyJDBC {
                     DELETE delete = new DELETE();
                     String sql = delete.QUERY();
                     statement.executeUpdate(sql);
-
                 }
                 case "3" -> {
                     UPDATE update = new UPDATE();
