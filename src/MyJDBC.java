@@ -1,7 +1,9 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class MyJDBC {
-    static final String QUERY = "SELECT idusers, username, password FROM USERS";
+    static Scanner scanner = new Scanner(System.in);
+    public static String table;
     public static void main(String[] args) {
         try {
             Connection connection = DriverManager.getConnection(
@@ -14,14 +16,39 @@ public class MyJDBC {
                 System.out.println("Connected to the database");
             }
 
+            System.out.println("Which table would you like to use?");
+            System.out.println("1. users");
+            System.out.println("2. customers");
+            String tableChoice = scanner.nextLine();
+
+            if (tableChoice.equals("1")) {
+                table = "users";
+            }
+            else {
+                table = "customers";
+            }
+
+            String QUERY = String.format("SELECT * FROM %s", table);
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(QUERY);
 
-            while (resultSet.next()) {
-                System.out.print("ID: " + resultSet.getInt("idusers"));
-                System.out.print(", Username: " + resultSet.getString("username"));
-                System.out.print(", Password: " + resultSet.getString("password"));
-                System.out.println();
+            resultSet = statement.executeQuery(QUERY);
+            if (table.equals("users")) {
+                while (resultSet.next()) {
+                    System.out.print("ID: " + resultSet.getInt("user_id"));
+                    System.out.print(", Username: " + resultSet.getString("username"));
+                    System.out.print(", Password: " + resultSet.getString("password"));
+                    System.out.println();
+                }
+            } else if (table.equals("customers")) {
+                while (resultSet.next()) {
+                    System.out.print("ID: " + resultSet.getInt("customer_id"));
+                    System.out.print(", Name: " + resultSet.getString("name"));
+                    System.out.print(", Surname: " + resultSet.getString("surname"));
+                    System.out.print(", Age: " + resultSet.getInt("age"));
+                    System.out.print(", Height: " + resultSet.getInt("height"));
+                    System.out.println();
+                }
             }
 
             Choice choice = new Choice();
@@ -46,20 +73,9 @@ public class MyJDBC {
                     statement.executeUpdate(sql);
                 }
             }
-
-            resultSet = statement.executeQuery(QUERY);
-            while (resultSet.next()) {
-                System.out.print("ID: " + resultSet.getInt("idusers"));
-                System.out.print(", Username: " + resultSet.getString("username"));
-                System.out.print(", Password: " + resultSet.getString("password"));
-                System.out.println();
-            }
         }
         catch (SQLException e) {
-            System.out.println("----------------------------------------------");
-            System.out.println("The Database is currently OFFLINE.");
-            System.out.println("Please check if MySQL Server is running.");
-            System.out.println("----------------------------------------------");
+            e.printStackTrace();
         }
     }
 }

@@ -22,8 +22,8 @@ public class UPDATE {
             String username = scanner.nextLine();
             System.out.println("Enter new username");
             String usernameChanged = scanner.nextLine();
-            return String.format("UPDATE USERS SET username = '%s' WHERE username '%s'",
-                                 usernameChanged, username);
+            return String.format("UPDATE '%s' SET username = '%s' WHERE username '%s'",
+                                 MyJDBC.table, usernameChanged, username);
         }
         return "";
     }
