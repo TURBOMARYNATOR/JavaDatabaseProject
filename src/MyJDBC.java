@@ -5,11 +5,19 @@ public class MyJDBC {
     static Scanner scanner = new Scanner(System.in);
     public static String table;
     public static void main(String[] args) {
+        System.out.println("Java MySQL Database Interface");
+        System.out.print("Enter your login: ");
+        String login = scanner.nextLine();
+        System.out.print("Enter your password: ");
+        String password = scanner.nextLine();
+        System.out.print("Enter the schema that you would like to use: ");
+        String schema = scanner.nextLine();
+
         try {
             Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/login_schema",
-                    "root",
-                    "wiktor123"
+                    "jdbc:mysql://127.0.0.1:3306/" + schema,
+                    login,
+                    password
             );
 
             if (connection != null) {
